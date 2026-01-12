@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS tags (
+    Id bigint NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Name nvarchar(100) NOT NULL
+);

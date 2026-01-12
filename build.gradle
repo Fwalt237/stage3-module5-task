@@ -1,0 +1,89 @@
+plugins {
+    id 'java-base'
+}
+
+wrapper {
+    gradleVersion = gradlewVersion
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'checkstyle'
+
+    group = 'com.mjc.school'
+
+    plugins.withType(JavaPlugin) {
+        java {
+            toolchain {
+                languageVersion = JavaLanguageVersion.of(project.javaVersion)
+            }
+        }
+        tasks.withType(JavaCompile) {
+            options.release = project.javaVersion.toInteger()
+            options.compilerArgs = ["-Xlint:deprecation", "-Xlint:unchecked", "-parameters"]
+        }
+    }
+    plugins.withId('org.springframework.boot') {
+        bootJar {
+            enabled = false
+        }
+    }
+    jar {
+        enabled = true
+    }
+
+    tasks.withType(Checkstyle) {
+        enabled = false
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation "com.tngtech.archunit:archunit-junit5:$archUnitVersion"
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+        // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
+        testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
+        testImplementation "io.rest-assured:json-path:$restAssuredVersion"
+        testImplementation "io.rest-assured:xml-path:$restAssuredVersion"
+
+        // https://mvnrepository.com/artifact/com.h2database/h2
+        testImplementation "com.h2database:h2:$h2Version"
+
+        // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-hateoas
+        implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+
+        // Source: https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+        implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:$openApiVersion"
+    }
+
+    configurations {
+        testImplementation {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    check {
+        dependsOn = [
+                test,
+                checkstyleMain,
+        ]
+    }
+
+}
+project(':module-web') {
+    plugins.withId('org.springframework.boot') {
+        bootJar {
+            enabled = true
+        }
+        jar{
+            enabled = false
+        }
+    }
+}

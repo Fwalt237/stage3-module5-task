@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="29350be5-5e28-414f-bf28-2e0694e78437" name="NEWS MANAGEMENT Mapping">
+      <data-sources db="0565214c-4310-4a27-b49c-2342df26d4f7" ddl="ea10cf72-a78a-4dcb-8468-6e316648d15f" />
+      <scope>
+        <node kind="database" qname="NEWS_MANAGEMENT">
+          <node kind="schema" qname="PUBLIC" />
+        </node>
+      </scope>
+    </mapping>
+  </component>
+  <component name="SqlDataSourceStorage">
+    <option name="dataSources">
+      <list>
+        <State>
+          <option name="id" value="ea10cf72-a78a-4dcb-8468-6e316648d15f" />
+          <option name="name" value="NEWS MANAGEMENT (DDL)" />
+          <option name="dbmsName" value="H2" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$/module-repository/src/main/resources/db/migration" />
+            </array>
+          </option>
+          <option name="outLayout" value="File per object by schema.groovy" />
+        </State>
+      </list>
+    </option>
+  </component>
+</project>
