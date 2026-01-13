@@ -12,17 +12,29 @@ subprojects {
 
     group = 'com.mjc.school'
 
-    plugins.withType(JavaPlugin) {
-        java {
-            toolchain {
-                languageVersion = JavaLanguageVersion.of(project.javaVersion)
-            }
-        }
-        tasks.withType(JavaCompile) {
-            options.release = project.javaVersion.toInteger()
-            options.compilerArgs = ["-Xlint:deprecation", "-Xlint:unchecked", "-parameters"]
+    test {
+        useJUnitPlatform()
+        testLogging {
+            events "passed", "skipped", "failed"
         }
     }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.compilerArgs += ['-parameters']
+    }
+
+
+//    plugins.withType(JavaPlugin) {
+//        java {
+//            toolchain {
+//                languageVersion = JavaLanguageVersion.of(project.javaVersion)
+//            }
+//        }
+//        tasks.withType(JavaCompile) {
+//            options.release = project.javaVersion.toInteger()
+//            options.compilerArgs = ["-Xlint:deprecation", "-Xlint:unchecked", "-parameters"]
+//        }
+//    }
     plugins.withId('org.springframework.boot') {
         bootJar {
             enabled = false
@@ -59,22 +71,22 @@ subprojects {
         implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:$openApiVersion"
     }
 
-    configurations {
-        testImplementation {
-            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-        }
-    }
-
-    test {
-        useJUnitPlatform()
-    }
-
-    check {
-        dependsOn = [
-                test,
-                checkstyleMain,
-        ]
-    }
+//    configurations {
+//        testImplementation {
+//            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+//        }
+//    }
+//
+//    test {
+//        useJUnitPlatform()
+//    }
+//
+//    check {
+//        dependsOn = [
+//                test,
+//                checkstyleMain,
+//        ]
+//    }
 
 }
 project(':module-web') {
