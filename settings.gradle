@@ -4,10 +4,6 @@ pluginManagement {
         id 'org.springframework.boot' version springBootPluginVersion
         id 'io.spring.dependency-management' version springBootDependencyManagementVersion
     }
-//    repositories {
-//        mavenCentral()
-//        gradlePluginPortal()
-//    }
 }
 rootProject.name = 'stage3-module5-task'
 
