@@ -43,7 +43,7 @@ subprojects {
     dependencies {
         testImplementation "com.tngtech.archunit:archunit-junit5:$archUnitVersion"
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
         // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
         testImplementation "io.rest-assured:rest-assured:$restAssuredVersion"
         testImplementation "io.rest-assured:json-path:$restAssuredVersion"

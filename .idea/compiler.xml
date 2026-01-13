@@ -10,6 +10,6 @@
         <module name="stage3-module5-task.module-service.main" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="25" />
+    <bytecodeTargetLevel target="21" />
   </component>
 </project>
