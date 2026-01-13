@@ -110,7 +110,7 @@ public class TagControllerTest extends BaseControllerTest {
                 .spec(requestSpecification)
                 .basePath("/api/v2")
         .when()
-                .get("/tags/2")
+                .get("/tags/9999")
         .then()
                 .statusCode(HttpStatus.NOT_FOUND.value())
                 .body("code",notNullValue())
@@ -167,7 +167,7 @@ public class TagControllerTest extends BaseControllerTest {
                 .spec(requestSpecification)
                 .body(updateJson)
         .when()
-                .patch("/tags/2")
+                .patch("/tags/9999")
         .then()
                 .statusCode(HttpStatus.NOT_FOUND.value());
     }
@@ -217,7 +217,7 @@ public class TagControllerTest extends BaseControllerTest {
         given()
                 .spec(requestSpecification)
         .when()
-                .delete("/tags/2")
+                .delete("/tags/9999")
         .then()
                 .statusCode(HttpStatus.NOT_FOUND.value());
     }

@@ -12,7 +12,6 @@ import static org.hamcrest.Matchers.*;
 @DisplayName("Comment controller RestAssured integration tests")
 public class CommentControllerTest extends BaseControllerTest {
 
-
     @Test
     @DisplayName("GET /comments with pagination - Should return 200 with correct page")
     void getAllCommentsWithPagination_ShouldReturn200(){
@@ -98,7 +97,7 @@ public class CommentControllerTest extends BaseControllerTest {
         String commentJson = """
                 {
                     "content":"Non existing news",
-                    "newsId":2
+                    "newsId":999
                 }
                 """;
         given()
@@ -168,7 +167,7 @@ public class CommentControllerTest extends BaseControllerTest {
                 .spec(requestSpecification)
                 .basePath("/api/v2")
         .when()
-                .get("/authors/2")
+                .get("/comments/9999")
         .then()
                 .statusCode(HttpStatus.NOT_FOUND.value())
                 .body("code",notNullValue())

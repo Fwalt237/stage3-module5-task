@@ -9,25 +9,12 @@ import com.mjc.school.service.filter.ResourceSearchFilter;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public abstract class BaseSearchFilterMapper<T> {
 
     public final static String SORT_AND_FILTER_DELIMITER = ":";
 
-    public final static String MULTIPLE_VALUE_DELIMITER = ";";
-
-    protected final static SortOrder ASC_ORDER = SortOrder.ASC;
-
-    protected final static SortOrder DESC_ORDER = SortOrder.DESC;
-
-    protected final static Map<String, String> DEFAULT_SORTING_MAP = new HashMap<>();
-
-    public List<Sorting> getDefaultSorting() {
-        return DEFAULT_SORTING_MAP.entrySet().stream()
-            .map(e -> new Sorting(e.getKey(), SortOrder.valueOf(e.getValue())))
-            .collect(Collectors.toList());
-    }
+    public abstract List<Sorting> getDefaultSorting();
 
     public abstract ResourceSearchFilter map(T searchFilterRequest);
 
@@ -53,7 +40,7 @@ public abstract class BaseSearchFilterMapper<T> {
     protected List<SearchCriteria> createSearchCriteriaList(final List<String> searchFilter) {
         List<SearchCriteria> searchCriteriaList = new ArrayList<>();
         if (CollectionUtils.isEmpty(searchFilter)) {
-            return Collections.EMPTY_LIST;
+            return List.of();
         }
         for (String filter : searchFilter) {
             String[] splitFilter = filter.split(SORT_AND_FILTER_DELIMITER);

@@ -122,7 +122,7 @@ public class NewsControllerTest extends BaseControllerTest{
         given()
                 .spec(requestSpecification)
                 .when()
-                .get("/news/2")
+                .get("/news/9999")
                 .then()
                 .statusCode(HttpStatus.NOT_FOUND.value())
                 .body("code",notNullValue())
@@ -195,7 +195,7 @@ public class NewsControllerTest extends BaseControllerTest{
                 .spec(requestSpecification)
                 .body(newsJson)
         .when()
-                .patch("/news/2")
+                .patch("/news/9999")
         .then()
                 .statusCode(HttpStatus.NOT_FOUND.value());
     }
@@ -248,7 +248,7 @@ public class NewsControllerTest extends BaseControllerTest{
         given()
                 .spec(requestSpecification)
         .when()
-                .delete("/news/2")
+                .delete("/news/9999")
         .then()
                 .statusCode(HttpStatus.NOT_FOUND.value());
     }

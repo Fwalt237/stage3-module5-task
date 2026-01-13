@@ -107,7 +107,7 @@ public class AuthorControllerTest extends BaseControllerTest{
                 .spec(requestSpecification)
                 .basePath("/api/v2")
         .when()
-                .get("/authors/2")
+                .get("/authors/9999")
         .then()
                 .statusCode(HttpStatus.NOT_FOUND.value())
                 .body("code",notNullValue())
@@ -163,7 +163,7 @@ public class AuthorControllerTest extends BaseControllerTest{
                 .spec(requestSpecification)
                 .body(updateJson)
         .when()
-                .patch("/authors/2")
+                .patch("/authors/9999")
         .then()
                 .statusCode(HttpStatus.NOT_FOUND.value());
     }
@@ -211,7 +211,7 @@ public class AuthorControllerTest extends BaseControllerTest{
         given()
                 .spec(requestSpecification)
         .when()
-                .delete("/authors/2")
+                .delete("/authors/9999")
         .then()
                 .statusCode(HttpStatus.NOT_FOUND.value());
     }
