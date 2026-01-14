@@ -8,12 +8,12 @@ import com.mjc.school.repository.filter.sorting.Sorting;
 import com.mjc.school.repository.filter.specification.EntitySearchSpecification;
 import com.mjc.school.repository.filter.specification.SearchFilterSpecification;
 import com.mjc.school.repository.model.BaseEntity;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
-import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.*;
-import jakarta.persistence.metamodel.EntityType;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
+import javax.persistence.metamodel.EntityType;
 import org.hibernate.PersistentObjectException;
 import org.hibernate.exception.ConstraintViolationException;
 

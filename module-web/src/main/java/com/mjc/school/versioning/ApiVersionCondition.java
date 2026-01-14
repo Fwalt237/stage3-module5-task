@@ -1,7 +1,7 @@
 package com.mjc.school.versioning;
 
 import com.mjc.school.exception.handler.ApiVersionNotSupportedException;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.servlet.mvc.condition.RequestCondition;
 
 

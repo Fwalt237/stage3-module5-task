@@ -6,9 +6,11 @@ import com.mjc.school.service.dto.TagDtoResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.NullValueCheckStrategy;
+import org.springframework.context.annotation.Primary;
 
 import java.util.List;
 
+@Primary
 @Mapper(componentModel = "spring",  nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS )
 public interface TagMapper {
 

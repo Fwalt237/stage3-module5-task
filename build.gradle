@@ -12,15 +12,11 @@ subprojects {
 
     group = 'com.mjc.school'
 
-    test {
-        useJUnitPlatform()
-        testLogging {
-            events "passed", "skipped", "failed"
-        }
-    }
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
 
-    tasks.withType(JavaCompile).configureEach {
-        options.compilerArgs += ['-parameters']
+    repositories {
+        mavenCentral()
     }
 
     plugins.withId('org.springframework.boot') {
@@ -34,14 +30,6 @@ subprojects {
 
     tasks.withType(Checkstyle) {
         enabled = false
-    }
-
-    tasks.withType(JavaCompile) {
-        options.fork = true
-    }
-
-    repositories {
-        mavenCentral()
     }
 
     dependencies {
@@ -59,10 +47,35 @@ subprojects {
         // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-hateoas
         implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 
-        // Source: https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
-        implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:$openApiVersion"
+        implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
+        implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
+
     }
 
+    configurations {
+        testImplementation {
+            exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+        }
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+
+    check {
+        dependsOn = [
+                test,
+                checkstyleMain,
+        ]
+    }
+
+    tasks.withType(JavaCompile) {
+        options.compilerArgs = [
+                "-Xlint:deprecation",
+                "-Xlint:unchecked",
+                "-parameters",
+        ]
+    }
 }
 project(':module-web') {
     plugins.withId('org.springframework.boot') {

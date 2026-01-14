@@ -1,7 +1,7 @@
 package com.mjc.school.repository.impl;
 
 import com.mjc.school.repository.model.Comment;
-import jakarta.persistence.TypedQuery;
+import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
