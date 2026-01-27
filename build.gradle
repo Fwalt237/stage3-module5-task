@@ -1,13 +1,24 @@
 plugins {
-    id 'java-base'
+   // id 'java-base'
+    id "org.sonarqube" version "5.1.0.4882"
+    id 'jacoco'
 }
 
+sonar {
+    properties {
+        property "sonar.projectKey", "stage3-module5-task"
+        property "sonar.projectName", "stage3-module5-task"
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${rootProject.projectDir}/**/build/reports/jacoco/test/jacocoTestReport.xml"
+    }
+}
 wrapper {
     gradleVersion = gradlewVersion
 }
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'jacoco'
     apply plugin: 'checkstyle'
 
     group = 'com.mjc.school'
@@ -17,6 +28,17 @@ subprojects {
 
     repositories {
         mavenCentral()
+    }
+
+    jacoco {
+        toolVersion = "0.8.11"
+    }
+
+    jacocoTestReport {
+        reports {
+            xml.required = true
+            html.required = true
+        }
     }
 
     plugins.withId('org.springframework.boot') {
@@ -60,6 +82,7 @@ subprojects {
 
     test {
         useJUnitPlatform()
+        finalizedBy jacocoTestReport
     }
 
     check {
@@ -86,4 +109,7 @@ project(':module-web') {
             enabled = false
         }
     }
+}
+tasks.named('sonar').configure {
+    dependsOn subprojects.test
 }
